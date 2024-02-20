@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #00246B;
+            color: #fff;
+            padding: 5px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        section {
+            display: grid;
+            grid-template-columns: 40% 60%;
+            /* Define two columns with 40% and 60% width respectively */
+            height: calc(100vh - 130px);
+            /* Height of viewport - header height */
+        }
+
+        .input-section {
+            background-color: #CADCFC;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .output-section {
+            padding: 20px;
+            background-color: #CADCFC;
+        }
+
+        /* textarea {
+            width: 100%;
+            height: calc(100% - 40px);
+            resize: none;
+        } */
+
+        .output {
+            font-size: 20px;
+            padding: 30px;
+
+            width: 100%;
+            /* height: calc(100% - 40px); */
+            /* Height - padding */
+            overflow-y: auto;
+            border: 1px solid #CADCFC;
+        }
+        .output,ul,li{
+            padding-left: 30px;
+            padding-right: 0px;
+            margin: 10px;
+            overflow-y: none;
+        }
+
+        form {
+            font-size: 30px;
+        }
+
+        .in {
+            font-size: 20px;
+            width: 300px;
+            border-radius: 20px;
+            outline: none;
+            box-shadow: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            height: 30px;
+            padding: 5px 10px;
+        }
+
+        button {
+            border: none;
+            background-color: red;
+            text-shadow: none;
+            /* This line may not be necessary */
+            padding: 5px 10px;
+            cursor: pointer;
+            /* Add cursor pointer to indicate it's clickable */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Find Your Movie</h1>
+    </header>
+    <section>
+        <div class="input-section">
+            <form action="/mov_rec" method="post">
+                <label for="input">Enter a movie you like:</label>
+                <br>
+                <br>
+                <input type="text" name="INPUT" id="input" class="in" placeholder="Eg: Forrest Gump">
+                <br>
+                <br>
+                <button type="submit" class="in">Submit</button>
+            </form>
+        </div>
+        <div class="output-section">
+            <div class="output" name="output" id="output">
+                {% if output %}
+                <h2>Movies suggested for you:</h2>
+                <ul>
+                    {% for movie in output %}
+                    <li>{{ movie }}</li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No movies found.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>
